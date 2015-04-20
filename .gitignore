@@ -15,6 +15,7 @@
 .emacs.desktop
 .emacs.desktop.lock
 .redcar
+.ruby-version
 .yardoc
 Desktop.ini
 Gemfile.lock

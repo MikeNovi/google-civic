@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'webmock'
   gem.add_development_dependency 'yard'
+  gem.add_development_dependency 'byebug'
   gem.author      = "Ryan Resella"
   gem.description = %q{A Ruby wrapper for the Google Civic API}
   gem.email       = 'ryan@codeforamerica.org'
