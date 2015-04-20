@@ -14,8 +14,8 @@ module GoogleCivic
 
     def request(method, path, body, options)
       response = connection.send(method) do |request|
-        request.url(path,  options.merge(:key => @key))
-        request.body = body.to_json
+        request.url(path, options.merge(:key => @key))
+        request.body = body.to_json unless body.nil?
       end
       response.body
     end

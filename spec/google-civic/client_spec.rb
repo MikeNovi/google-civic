@@ -41,7 +41,7 @@ describe GoogleCivic::Client do
 
   describe "#representative_info" do
     it "should return the representative information from an address" do
-     stub_get("/representatives?address=1263%20Pacific%20Ave.%20Kansas%20City%20KS&key=abc123").
+      stub_get("/representatives?address=1263%20Pacific%20Ave.%20Kansas%20City%20KS&key=abc123").
         to_return(:status => 200, :body => fixture("representative.json"), :headers => {})
       rep_info = @client.representative_info("1263 Pacific Ave. Kansas City KS")
       rep_info.offices.first[1].name.should eql "United States House of Representatives KS-03"
