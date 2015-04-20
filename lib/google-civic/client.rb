@@ -42,7 +42,7 @@ module GoogleCivic
     # @example List information about the representatives
     #   GoogleCivic.representative_info('1263 Pacific Ave. Kansas City KS')
     def representative_info(address, options={})
-      post("representatives/lookup", {address: address}, options)
+      post("representatives", {address: address}, options)
     end
 
   end
