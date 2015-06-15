@@ -38,12 +38,23 @@ module GoogleCivic
     # @param address [String] The address to search on.
     # @param options [Hash] A customizable set of options.
     # @return [Hashie::Mash] A list of current information about representatives
-    # @see https://developers.google.com/civic-information/docs/us_v1/representatives/representativeInfoQuery
+    # @see https://developers.google.com/civic-information/docs/v2/representatives/representativeInfoByAddress
     # @example List information about the representatives
     #   GoogleCivic.representative_info('1263 Pacific Ave. Kansas City KS')
-    def representative_info(address, options={})
+    def representative_info_by_address(address, options={})
       get("representatives", options.merge({address: address}))
     end
 
+    # Looks up political geography and (optionally) representative information based on an ocdId
+    #
+    # @param ocdId [String] The ocdId to search with.
+    # @param options [Hash] A customizable set of options.
+    # @return [Hashie::Mash] A list of current information about representatives
+    # @see https://developers.google.com/civic-information/docs/v2/representatives/representativeInfoByDivision
+    # @example List information about the representatives
+    #   GoogleCivic.representative_info('ocd-division/country:us/state:nc/county:durham')
+    def representative_info_by_division(ocd_id, options={})
+      get("representatives/#{url_encode(ocd_id)}", options.merge({}))
+    end
   end
 end

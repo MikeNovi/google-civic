@@ -1,3 +1,6 @@
+require "erb"
+include ERB::Util
+
 require 'helper'
 
 describe GoogleCivic::Client do
@@ -39,13 +42,21 @@ describe GoogleCivic::Client do
     end
   end
 
-  describe "#representative_info" do
+  describe "#representative_info_by_address" do
     it "should return the representative information from an address" do
       stub_get("/representatives?address=1263%20Pacific%20Ave.%20Kansas%20City%20KS&key=abc123").
         to_return(:status => 200, :body => fixture("representative.json"), :headers => {})
-      rep_info = @client.representative_info("1263 Pacific Ave. Kansas City KS")
+      rep_info = @client.representative_info_by_address("1263 Pacific Ave. Kansas City KS")
       rep_info.offices.first[1].name.should eql "United States House of Representatives KS-03"
     end
   end
 
+  describe "#representative_info_by_address" do
+    it "should return the representative information from an address" do
+      stub_get("/representatives/ocd-division%2Fcountry:us%2Fstate:nc%2Fcounty:durham?key=abc123").
+        to_return(:status => 200, :body => fixture("representative.json"), :headers => {})
+      rep_info = @client.representative_info_by_division("ocd-division/country:us/state:nc/county:durham")
+      rep_info.offices.first[1].name.should eql "United States House of Representatives KS-03"
+    end
+  end
 end
