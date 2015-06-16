@@ -1,3 +1,6 @@
+require "erb"
+include ERB::Util
+
 require 'google-civic/connection'
 require 'google-civic/request'
 
